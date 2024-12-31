@@ -1,9 +1,42 @@
+/* Background color transition */
+@keyframes backgroundChange {
+    0% {
+        background-color: #ffffff; /* White */
+    }
+    50% {
+        background-color: #1a1a1a; /* Dark gray */
+    }
+    100% {
+        background-color: #ffffff; /* Back to white */
+    }
+}
+
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #ffefd5, #ff69b4);
     text-align: center;
     padding: 20px;
     color: #333;
+    margin: 0;
+    overflow-x: hidden;
+    position: relative; /* To allow positioning of the background text */
+    animation: backgroundChange 10s infinite; /* Smooth transition */
+}
+
+/* Background with repeating text */
+body::before {
+    content: "Hydan Koech ".repeat(100); /* Repeat your name */
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 50px;
+    color: rgba(255, 20, 147, 0.1); /* Light pink color with transparency */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: -1; /* Send it to the back */
+    transform: rotate(-30deg); /* Tilt the text for a stylish effect */
+    line-height: 1.5;
 }
 
 .container {
@@ -39,4 +72,43 @@ button:hover {
 
 h1, h2 {
     color: #4b0082;
+}
+
+/* Flashing Lights Effect */
+@keyframes flash {
+    0%, 100% {
+        background-color: #ff69b4;
+    }
+    50% {
+        background-color: #4b0082;
+    }
+}
+
+.flashing-lights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #ff69b4;
+    animation: flash 1s infinite;
+}
+
+/* Heart Emoji Animation */
+.heart {
+    position: absolute;
+    top: -50px;
+    font-size: 24px;
+    animation: drop 3s linear infinite;
+}
+
+@keyframes drop {
+    0% {
+        top: -50px;
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
 }

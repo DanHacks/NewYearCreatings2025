@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const personalGreeting = document.getElementById('personalGreeting');
     const generateLinkButton = document.getElementById('generateLink');
     const invitationLink = document.getElementById('invitationLink');
+    const heartsContainer = document.getElementById('heartsContainer');
 
     // Handle form submission
     document.getElementById('submitName').addEventListener('click', () => {
@@ -13,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
             nameForm.style.display = 'none';
             greetingMessage.style.display = 'block';
             personalGreeting.textContent = `Happy New Year 2025, ${userName}!`;
+
+            // Start dropping hearts
+            startHeartsAnimation();
         } else {
             alert('Please enter your name.');
         }
@@ -34,4 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Invitation link copied to clipboard!');
         };
     });
+
+    // Function to start hearts animation
+    function startHeartsAnimation() {
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.textContent = '❤️';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.fontSize = `${Math.random() * 20 + 20}px`;
+            heartsContainer.appendChild(heart);
+
+            // Remove the heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }, 300);
+    }
 });
